@@ -82,7 +82,7 @@ var modelBuilder = function (req, res, callback) {
 		model.cart = result.cart;
 		callback(null, model);
 	});
-}
+};
 module.exports.cart = function (req, res, next) {
 
 	//Load (or initialize) the cart
@@ -168,7 +168,7 @@ module.exports.newProduct = function (req, res) {
 			console.log('save error', err);
 		}
 
-		modelBuilder(req, res, function (err, model) {
+		modelBuilder(req, res, function (err, model, next) {
 			if (err) {
 				return next(err);
 			}
@@ -252,12 +252,12 @@ module.exports.pay = function (req, res) {
 		if (resp) {
 			delete req.session.cart;
 			delete req.session.displayCart;
-			modelBuilder(req, res, function (err, model) {
+			modelBuilder(req, res, function (err, model, next) {
 				if (err) {
 					return next(err);
 				}
 				model.cart.result =  res.bundle.get('paymentSuccess');
-				model.cart.continueMessage = res.bundle.get('keepShopping')
+				model.cart.continueMessage = res.bundle.get('keepShopping');
 				res.status(200).json(model);
 			});
 

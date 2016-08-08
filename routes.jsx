@@ -24,7 +24,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var Layout = require('./public/views/layout.jsx');
 var Index = require('./public/views/index.jsx');
 var Cart = require('./public/views/cart.jsx');
-var Products = require('./public/views/products.jsx');
+var Products = require('./public/views/Products.jsx');
 var Actions = require('./public/js/actions');
 
 var onsave = function(product) {
